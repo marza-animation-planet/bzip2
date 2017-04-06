@@ -5,3 +5,9 @@ bzip2recover
 libbz2.a
 libbz2.so*
 *.obj
+
+/.build/
+/release/
+/debug/
+excons.cache
+*.dblite
