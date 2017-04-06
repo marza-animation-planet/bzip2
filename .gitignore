@@ -1,0 +1,7 @@
+*.o
+bzip2
+bzip2-shared
+bzip2recover
+libbz2.a
+libbz2.so*
+*.obj
