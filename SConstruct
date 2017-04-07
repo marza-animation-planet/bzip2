@@ -78,6 +78,10 @@ prjs = [
    }
 ]
 
+excons.AddHelpOptions(bzip2="""BZIP2 OPTIONS
+  bzip2-static=0|1       : Build static or shared library. [1]
+  bzip2-lib-suffix=<str> : Library name suffix.            ['_s' for static lib, '' otherwise]""")
+
 excons.DeclareTargets(env, prjs)
 
 Export("Bzip2Name Bzip2Path RequireBzip2")
