@@ -58,6 +58,7 @@ prjs = [
       "soname": "libbz2.so.1",
       "install_name": "libbz2.1.dylib",
       "cppflags": cppflags,
+      "install": {"include": ["bzlib.h"]},
       "srcs": ["blocksort.c", "huffman.c", "crctable.c", "randtable.c", "compress.c", "decompress.c", "bzlib.c"]
    },
    {  "name": "bzip2",
