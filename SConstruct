@@ -51,6 +51,7 @@ libname = Bzip2Name()
 
 prjs = [
    {  "name": libname,
+      "alias": "libbzip2",
       "type": "%slib" % ("static" if staticlib else "shared"),
       "defs": defs + ["BZ_DLL_EXPORTS"],
       "symvis": "default",
@@ -78,6 +79,10 @@ prjs = [
       "custom": [RequireBzip2]
    }
 ]
+
+excons.AddHelpOptions(bzip2="""BZIP2 OPTIONS
+  bzip2-static=0|1       : Build static or shared library. [1]
+  bzip2-lib-suffix=<str> : Library name suffix.            ['_s' for static lib, '' otherwise]""")
 
 excons.DeclareTargets(env, prjs)
 

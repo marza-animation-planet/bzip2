@@ -35,17 +35,12 @@
    This change occurred in version 1.0.2; all prior versions have
    the 512MB limitation.
 */
-#ifdef __GNUC__
-   typedef  unsigned long long int  MaybeUInt64;
-#  define MaybeUInt64_FMT "%Lu"
-#else
 #ifdef _MSC_VER
-   typedef  unsigned __int64  MaybeUInt64;
-#  define MaybeUInt64_FMT "%I64u"
+   typedef  unsigned long long MaybeUInt64;
+#  define MaybeUInt64_FMT "%llu"
 #else
-   typedef  unsigned int   MaybeUInt64;
-#  define MaybeUInt64_FMT "%u"
-#endif
+   typedef  unsigned long MaybeUInt64;
+#  define MaybeUInt64_FMT "%lu"
 #endif
 
 typedef  unsigned int   UInt32;
