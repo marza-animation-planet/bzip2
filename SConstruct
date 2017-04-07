@@ -51,6 +51,7 @@ libname = Bzip2Name()
 
 prjs = [
    {  "name": libname,
+      "alias": "libbzip2",
       "type": "%slib" % ("static" if staticlib else "shared"),
       "defs": defs + ["BZ_DLL_EXPORTS"],
       "symvis": "default",
