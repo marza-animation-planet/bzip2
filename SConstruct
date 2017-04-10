@@ -4,29 +4,29 @@ import excons
 
 env = excons.MakeBaseEnv()
 
-staticlib = (excons.GetArgument("bzip2-static", 1, int) != 0)
-libsuffix = excons.GetArgument("bzip2-suffix", "_s" if staticlib else "")
+staticlib = (excons.GetArgument("bz2-static", 1, int) != 0)
+libsuffix = excons.GetArgument("bz2-suffix", "_s" if staticlib else "")
 
 out_incdir = excons.OutputBaseDirectory() + "/include"
 out_libdir = excons.OutputBaseDirectory() + "/lib"
 
-def Bzip2Name():
+def BZ2Name():
    return ("lib" if sys.platform == "win32" else "") + "bz2" + libsuffix
 
-def Bzip2Path():
-   name = Bzip2Name()
+def BZ2Path():
+   name = BZ2Name()
    if sys.platform == "win32":
       libname = name + ".lib"
    else:
       libname = "lib" + name + ".a"
    return out_libdir + "/" + libname
 
-def RequireBzip2(env):
+def RequireBZ2(env):
    if not staticlib:
       env.Append(CPPDEFINES=["BZ_DLL"])
    env.Append(CPPPATH=[out_incdir])
    env.Append(LIBPATH=[out_libdir])
-   excons.Link(env, Bzip2Name(), static=staticlib, force=True, silent=True)
+   excons.Link(env, BZ2Name(), static=staticlib, force=True, silent=True)
 
 
 defs = ["_FILE_OFFSET_BITS=64"]
@@ -47,13 +47,13 @@ else:
    # 4702: unreachable code
    cppflags += " /wd4127 /wd4244 /wd4100 /wd4267 /wd4996 /wd4702"
 
-libname = Bzip2Name()
+libname = BZ2Name()
 
 prjs = [
    {  "name": libname,
-      "alias": "libbzip2",
+      "alias": "bz2",
       "type": "%slib" % ("static" if staticlib else "shared"),
-      "defs": defs + ["BZ_DLL_EXPORTS"],
+      "defs": defs + (["BZ_DLL_EXPORTS"] if not staticlib else []),
       "symvis": "default",
       "version": "1.0.6",
       "soname": "libbz2.so.1",
@@ -64,27 +64,30 @@ prjs = [
    },
    {  "name": "bzip2",
       "type": "program",
+      "alias": "bz2-tools",
       "defs": defs,
       "cppflags": cppflags,
       "srcs": ["bzip2.c"],
       "deps": [libname],
-      "custom": [RequireBzip2]
+      "custom": [RequireBZ2]
    },
    {  "name": "bzip2recover",
       "type": "program",
+      "alias": "bz2-tools",
       "defs": defs,
       "cppflags": cppflags,
       "srcs": ["bzip2recover.c"],
       "deps": [libname],
-      "custom": [RequireBzip2]
+      "custom": [RequireBZ2]
    }
 ]
 
-excons.AddHelpOptions(bzip2="""BZIP2 OPTIONS
-  bzip2-static=0|1   : Build static or shared library. [1]
-  bzip2-suffix=<str> : Library name suffix.            ['_s' for static lib, '' otherwise]""")
+excons.AddHelpOptions(bz2="""BZIP2 OPTIONS
+  bz2-static=0|1   : Build static or shared library. [1]
+  bz2-suffix=<str> : Library name suffix.            ['_s' for static lib, '' otherwise]""")
 
 excons.DeclareTargets(env, prjs)
 
-Export("Bzip2Name Bzip2Path RequireBzip2")
+Export("BZ2Name BZ2Path RequireBZ2")
 
+Default(["bz2"])
