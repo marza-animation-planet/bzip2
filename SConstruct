@@ -5,7 +5,7 @@ import excons
 env = excons.MakeBaseEnv()
 
 staticlib = (excons.GetArgument("bz2-static", 1, int) != 0)
-libsuffix = excons.GetArgument("bz2-suffix", "_s" if staticlib else "")
+libsuffix = excons.GetArgument("bz2-suffix", "")
 
 out_incdir = excons.OutputBaseDirectory() + "/include"
 out_libdir = excons.OutputBaseDirectory() + "/lib"
