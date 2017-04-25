@@ -32,7 +32,7 @@ def RequireBZ2(env):
       env.Append(CPPDEFINES=["BZ_DLL"])
    env.Append(CPPPATH=[out_incdir])
    env.Append(LIBPATH=[out_libdir])
-   excons.Link(env, BZ2Name(), static=staticlib, force=True, silent=True)
+   excons.Link(env, BZ2Path(), static=staticlib, force=True, silent=True)
 
 
 defs = []
@@ -50,10 +50,9 @@ else:
    # 4702: unreachable code
    cppflags += " /wd4127 /wd4244 /wd4100 /wd4267 /wd4702"
 
-libname = BZ2Name()
 
 prjs = [
-   {  "name": libname,
+   {  "name": BZ2Name(),
       "alias": "bz2",
       "type": "%slib" % ("static" if staticlib else "shared"),
       "defs": defs + (["BZ_DLL_EXPORTS"] if not staticlib else []),
@@ -70,7 +69,6 @@ prjs = [
       "alias": "bz2-tools",
       "cppflags": cppflags,
       "srcs": ["bzip2.c"],
-      "deps": [libname],
       "custom": [RequireBZ2]
    },
    {  "name": "bzip2recover",
@@ -78,7 +76,6 @@ prjs = [
       "alias": "bz2-tools",
       "cppflags": cppflags,
       "srcs": ["bzip2recover.c"],
-      "deps": [libname],
       "custom": [RequireBZ2]
    }
 ]
