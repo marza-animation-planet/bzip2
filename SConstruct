@@ -11,14 +11,20 @@ out_incdir = excons.OutputBaseDirectory() + "/include"
 out_libdir = excons.OutputBaseDirectory() + "/lib"
 
 def BZ2Name():
-   return ("lib" if sys.platform == "win32" else "") + "bz2" + libsuffix
+   name = "bz2" + libsuffix
+   if sys.platform == "win32" and staticlib:
+      # On windows, 'lib' is part of the library name for static lib
+      # static: libbz2<suffix>.lib
+      # shared: bz2<suffix>.lib + bz2<suffix>.dll
+      name = "lib" + name
+   return name
 
 def BZ2Path():
    name = BZ2Name()
    if sys.platform == "win32":
       libname = name + ".lib"
    else:
-      libname = "lib" + name + ".a"
+      libname = "lib" + name + (".a" if staticlib else excons.SharedLibraryLinkExt())
    return out_libdir + "/" + libname
 
 def RequireBZ2(env):
@@ -29,11 +35,9 @@ def RequireBZ2(env):
    excons.Link(env, BZ2Name(), static=staticlib, force=True, silent=True)
 
 
-defs = ["_FILE_OFFSET_BITS=64"]
+defs = []
 if not staticlib:
    defs.append("BZ_DLL")
-if sys.platform == "win32":
-   defs.append("_CRT_SECURE_NO_WARNINGS")
 
 cppflags = ""
 if sys.platform != "win32":
@@ -43,9 +47,8 @@ else:
    # 4127: conditional expression is constant
    # 4244: uint to uchar conversion
    # 4267: size_t to int32 conversion
-   # 4996: POSIX name deprecated
    # 4702: unreachable code
-   cppflags += " /wd4127 /wd4244 /wd4100 /wd4267 /wd4996 /wd4702"
+   cppflags += " /wd4127 /wd4244 /wd4100 /wd4267 /wd4702"
 
 libname = BZ2Name()
 
@@ -65,7 +68,6 @@ prjs = [
    {  "name": "bzip2",
       "type": "program",
       "alias": "bz2-tools",
-      "defs": defs,
       "cppflags": cppflags,
       "srcs": ["bzip2.c"],
       "deps": [libname],
@@ -74,7 +76,6 @@ prjs = [
    {  "name": "bzip2recover",
       "type": "program",
       "alias": "bz2-tools",
-      "defs": defs,
       "cppflags": cppflags,
       "srcs": ["bzip2recover.c"],
       "deps": [libname],
@@ -89,5 +90,3 @@ excons.AddHelpOptions(bz2="""BZIP2 OPTIONS
 excons.DeclareTargets(env, prjs)
 
 Export("BZ2Name BZ2Path RequireBZ2")
-
-Default(["bz2"])
