@@ -82,7 +82,7 @@ prjs = [
 
 excons.AddHelpOptions(bz2="""BZIP2 OPTIONS
   bz2-static=0|1   : Build static or shared library. [1]
-  bz2-suffix=<str> : Library name suffix.            ['_s' for static lib, '' otherwise]""")
+  bz2-suffix=<str> : Library name suffix.            []""")
 
 excons.DeclareTargets(env, prjs)
 
