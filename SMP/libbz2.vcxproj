@@ -167,14 +167,12 @@
     <TargetName>bz2d</TargetName>
     <IntDir>$(SolutionDir)obj\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
     <OutDir>$(ProjectDir)..\..\..\msvc\</OutDir>
-    <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets>Clean</CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugDLL|x64'">
     <TargetName>bz2d</TargetName>
     <OutDir>$(ProjectDir)..\..\..\msvc\</OutDir>
     <IntDir>$(SolutionDir)obj\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
     <CustomBuildAfterTargets>Clean</CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDLL|Win32'">
@@ -232,9 +230,9 @@
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;_DEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(OutDir)\lib\x86\$(TargetName).pdb</ProgramDataBaseFileName>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -245,19 +243,19 @@
       <OutputFile>$(OutDir)\lib\x86\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -275,9 +273,9 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0600;_DEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(OutDir)\lib\x64\$(TargetName).pdb</ProgramDataBaseFileName>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -288,19 +286,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <OutputFile>$(OutDir)\lib\x64\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -318,9 +316,9 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;_DEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -334,19 +332,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <MinimumRequiredVersion>5.1</MinimumRequiredVersion>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -364,9 +362,9 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0600;_DEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -379,19 +377,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <MinimumRequiredVersion>6.0</MinimumRequiredVersion>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -410,16 +408,12 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <ProgramDataBaseFileName>$(OutDir)\lib\x86\$(TargetName).pdb</ProgramDataBaseFileName>
@@ -437,19 +431,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <OutputFile>$(OutDir)\lib\x86\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -468,16 +462,12 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <ProgramDataBaseFileName>$(OutDir)\lib\x86\$(TargetName).pdb</ProgramDataBaseFileName>
@@ -495,19 +485,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <OutputFile>$(OutDir)\lib\x86\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -526,16 +516,12 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0600;NDEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <ProgramDataBaseFileName>$(OutDir)\lib\x64\$(TargetName).pdb</ProgramDataBaseFileName>
@@ -553,19 +539,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <OutputFile>$(OutDir)\lib\x64\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -584,16 +570,12 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0600;NDEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <InterproceduralOptimization>SingleFile</InterproceduralOptimization>
       <ProgramDataBaseFileName>$(OutDir)\lib\x64\$(TargetName).pdb</ProgramDataBaseFileName>
@@ -611,19 +593,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <OutputFile>$(OutDir)\lib\x64\$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -642,16 +624,12 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0502;NDEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -669,19 +647,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <MinimumRequiredVersion>5.1</MinimumRequiredVersion>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
@@ -700,16 +678,12 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0600;NDEBUG;_WINDOWS;_FILE_OFFSET_BITS=64;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-      <FloatingPointModel>Fast</FloatingPointModel>
-      <FloatingPointExceptions>false</FloatingPointExceptions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <AdditionalIncludeDirectories>..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <DisableSpecificWarnings>4996;4267;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
@@ -726,19 +700,19 @@ del /f /q $(OutDir)\licenses\bzip2.txt
       <MinimumRequiredVersion>6.0</MinimumRequiredVersion>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(OutDir)\include
-copy ..\bzlib.h $(OutDir)\include
+      <Command>mkdir "$(OutDir)"\include
+copy ..\bzlib.h "$(OutDir)"\include
 mkdir $(OutDir)\licenses
 copy ..\LICENSE $(OutDir)\licenses\bzip2.txt</Command>
     </PostBuildEvent>
     <PreBuildEvent>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del "$(OutDir)"\include\bzlib.h
 )</Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Command>if exist $(OutDir)\include\bzlib.h (
-del /f /q $(OutDir)\include\bzlib.h
+      <Command>if exist "$(OutDir)"\include\bzlib.h (
+del /f /q "$(OutDir)"\include\bzlib.h
 )
 if exist $(OutDir)\licenses\bzip2.txt (
 del /f /q $(OutDir)\licenses\bzip2.txt
