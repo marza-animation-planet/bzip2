@@ -5,6 +5,11 @@ bzip2recover
 libbz2.a
 libbz2.so*
 *.obj
+*.rb2
+*.tst
+*.a
+*.lib
+*.exe
 
 /.build/
 /release/
