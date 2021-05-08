@@ -1,5 +1,6 @@
 import sys
 import excons
+import SCons.Script # pylint: disable=import-error
 
 
 env = excons.MakeBaseEnv()
@@ -28,7 +29,7 @@ def BZ2Path():
    return out_libdir + "/" + libname
 
 def RequireBZ2(env):
-   if not staticlib:
+   if not staticlib and sys.platform == "win32":
       env.Append(CPPDEFINES=["BZ_DLL"])
    env.Append(CPPPATH=[out_incdir])
    env.Append(LIBPATH=[out_libdir])
@@ -55,7 +56,7 @@ prjs = [
    {  "name": BZ2Name(),
       "alias": "bz2",
       "type": "%slib" % ("static" if staticlib else "shared"),
-      "defs": defs + (["BZ_DLL_EXPORTS"] if not staticlib else []),
+      "defs": defs + (["BZ_DLL_EXPORTS"] if (sys.platform == "win32" and not staticlib) else []),
       "symvis": "default",
       "version": "1.0.8",
       "soname": "libbz2.so.1",
@@ -86,4 +87,4 @@ excons.AddHelpOptions(bz2="""BZIP2 OPTIONS
 
 excons.DeclareTargets(env, prjs)
 
-Export("BZ2Name BZ2Path RequireBZ2")
+SCons.Script.Export("BZ2Name BZ2Path RequireBZ2")
