@@ -37,7 +37,7 @@ def RequireBZ2(env):
 
 
 defs = []
-if not staticlib:
+if sys.platform == "win32" and not staticlib:
    defs.append("BZ_DLL")
 
 cppflags = ""
