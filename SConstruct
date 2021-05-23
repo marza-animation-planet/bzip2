@@ -57,7 +57,6 @@ prjs = [
       "alias": "bz2",
       "type": "%slib" % ("static" if staticlib else "shared"),
       "defs": defs + (["BZ_DLL_EXPORTS"] if (sys.platform == "win32" and not staticlib) else []),
-      "symvis": "default",
       "version": "1.0.8",
       "soname": "libbz2.so.1",
       "install_name": "libbz2.1.dylib",
